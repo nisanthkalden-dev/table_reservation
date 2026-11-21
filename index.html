@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CINDRE — Reserve Your Table</title>
+<meta name="description" content="CINDRE. One Michelin star. Live-fire tasting menu. Reserve your table.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+ 
+<div class="grain-overlay"></div>
+<div class="cd-cursor" id="cdCursor"><div class="cd-cursor-dot" id="cdCursorDot"></div><div class="cd-cursor-ring" id="cdCursorRing"></div></div>
+<canvas id="emberCanvas"></canvas>
+ 
+<header class="cd-header" id="cdHeader">
+  <div class="cd-header-inner">
+    <a href="#top" class="cd-logo">CINDRE</a>
+    <nav class="cd-nav">
+      <a href="#tables">Experience</a>
+      <a href="#reserve">Tables</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <div class="cd-header-right">
+      <button class="cd-btn cd-btn-gold" data-magnetic onclick="scrollToReserve()">Reserve</button>
+      <button class="cd-burger" id="cdBurger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="cd-mobile-menu" id="cdMobileMenu">
+    <a href="#tables">Experience</a>
+    <a href="#reserve">Tables</a>
+    <a href="#reviews">Reviews</a>
+  </div>
+</header>
+ 
+<main id="top">
+ 
+  <!-- HERO -->
+  <section class="cd-hero" id="hero">
+    <div class="cd-hero-bg" id="heroBg">
+      <img id="heroImg" alt="Live-fire dish plated at CINDRE" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&amp;w=1920&amp;auto=format&amp;fit=crop">
+      <div class="cd-hero-gradient"></div>
+    </div>
+    <div class="cd-hero-content">
+      <p class="eyebrow">One Michelin Star — Live&#8209;Fire Tasting Menu</p>
+      <h1 class="cd-hero-title">
+        <span class="cd-line"><span class="cd-word">Reserve</span></span>
+        <span class="cd-line"><span class="cd-word">Your</span></span>
+        <span class="cd-line"><span class="cd-word cd-italic">Moment</span></span>
+      </h1>
+      <p class="cd-hero-sub">Eleven courses, one open flame. CINDRE seats forty-two guests a night — never more.</p>
+      <div class="cd-scroll-cue"><span></span>Scroll</div>
+    </div>
+ 
+    <div class="cd-hero-card" id="heroCard">
+      <div class="cd-hero-field">
+        <label>Date</label>
+        <div class="cd-hero-value date-label" id="heroDateTrigger">Select date</div>
+      </div>
+      <div class="cd-hero-field">
+        <label>Party Size</label>
+        <div class="cd-hero-stepper">
+          <button class="cd-step-btn" type="button" onclick="stepGuests(-1)" aria-label="Fewer guests">&#8722;</button>
+          <span class="cd-guest-num guest-num" id="heroGuestNum">2</span>
+          <button class="cd-step-btn" type="button" onclick="stepGuests(1)" aria-label="More guests">&#43;</button>
+        </div>
+      </div>
+      <div class="cd-hero-field">
+        <label>Seating</label>
+        <div class="cd-hero-value table-label" id="heroTableLabel">Indoor Noir</div>
+      </div>
+      <button class="cd-btn cd-btn-gold" data-magnetic onclick="checkAvailability()">Check Availability</button>
+    </div>
+  </section>
+ 
+  <!-- TABLES -->
+  <section class="cd-tables" id="tables">
+    <div class="wrap">
+      <div class="cd-tables-head reveal">
+        <div>
+          <p class="eyebrow">The Room</p>
+          <h2>Four ways to sit<br>near the fire.</h2>
+        </div>
+        <p>Every seat at CINDRE faces the flame in some way. Choose the distance that suits your evening.</p>
+      </div>
+ 
+      <div class="cd-bento">
+        <div class="cd-card reveal" data-key="indoor-noir" data-tilt data-title="Indoor Noir" data-cap="2–6 guests" data-desc="Candlelit and close to the pass, beneath a charcoal-plastered ceiling. Our signature room." data-image="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1400&auto=format&fit=crop" onclick="selectTable('indoor-noir')">
+          <div class="cd-card-media"><img alt="Indoor Noir dining room" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1400&auto=format&fit=crop"></div>
+          <div class="cd-card-scrim"></div>
+          <div class="cd-card-grain"></div>
+          <div class="cd-card-check">✓</div>
+          <div class="cd-card-body">
+            <span class="cd-card-index">01 — Signature Room</span>
+            <h3>Indoor Noir</h3>
+            <span class="cd-card-cap">2–6 guests</span>
+            <p class="cd-card-desc">Candlelit and close to the pass, beneath a charcoal-plastered ceiling. Our signature room.</p>
+            <span class="cd-card-cta">Reserve This &nbsp;→</span>
+          </div>
+        </div>
+ 
+        <div class="cd-card reveal" data-key="chefs-counter" data-tilt data-title="Chef's Counter" data-cap="1–2 guests · tasting menu only" data-desc="Eight seats, one flame. Watch each course composed inches from where you sit." data-image="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1400&auto=format&fit=crop" onclick="selectTable('chefs-counter')">
+          <div class="cd-card-media"><img alt="Chef's Counter open kitchen" src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1400&auto=format&fit=crop"></div>
+          <div class="cd-card-scrim"></div>
+          <div class="cd-card-grain"></div>
+          <div class="cd-card-check">✓</div>
+          <div class="cd-card-body">
+            <span class="cd-card-index">02 — Eight Seats Only</span>
+            <h3>Chef's Counter</h3>
+            <span class="cd-card-cap">1–2 guests · tasting menu only</span>
+            <p class="cd-card-desc">Eight seats, one flame. Watch each course composed inches from where you sit.</p>
+            <span class="cd-card-cta">Reserve This &nbsp;→</span>
+          </div>
+        </div>
+ 
+        <div class="cd-card reveal" data-key="garden-terrace" data-tilt data-title="Garden Terrace" data-cap="2–8 guests" data-desc="Open air beneath olive trees and hanging lanterns. Best experienced after sundown." data-image="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?q=80&w=1400&auto=format&fit=crop" onclick="selectTable('garden-terrace')">
+          <div class="cd-card-media"><img alt="Garden Terrace seating" src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?q=80&w=1400&auto=format&fit=crop"></div>
+          <div class="cd-card-scrim"></div>
+          <div class="cd-card-grain"></div>
+          <div class="cd-card-check">✓</div>
+          <div class="cd-card-body">
+            <span class="cd-card-index">03 — Open Air</span>
+            <h3>Garden Terrace</h3>
+            <span class="cd-card-cap">2–8 guests</span>
+            <p class="cd-card-desc">Open air beneath olive trees and hanging lanterns. Best experienced after sundown.</p>
+            <span class="cd-card-cta">Reserve This &nbsp;→</span>
+          </div>
+        </div>
+ 
+        <div class="cd-card reveal" data-key="rooftop-private" data-tilt data-title="Rooftop Private" data-cap="4–12 guests · $500 minimum" data-desc="A glass-enclosed room above the city, held entirely for your party, with dedicated service." data-image="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1400&auto=format&fit=crop" onclick="selectTable('rooftop-private')">
+          <div class="cd-card-media"><img alt="Rooftop Private dining room" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1400&auto=format&fit=crop"></div>
+          <div class="cd-card-scrim"></div>
+          <div class="cd-card-grain"></div>
+          <div class="cd-card-check">✓</div>
+          <div class="cd-card-body">
+            <span class="cd-card-index">04 — Held For You</span>
+            <h3>Rooftop Private</h3>
+            <span class="cd-card-cap">4–12 guests · $500 minimum</span>
+            <p class="cd-card-desc">A glass-enclosed room above the city, held entirely for your party, with dedicated service.</p>
+            <span class="cd-card-cta">Reserve This &nbsp;→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- RESERVE -->
+  <section class="cd-reserve" id="reserve">
+    <div class="wrap">
+      <div class="cd-reserve-grid">
+ 
+        <div class="cd-reserve-visual reveal">
+          <div class="cd-reserve-frame" id="reserveFrame">
+            <img id="reserveImg1" class="is-active" alt="Selected seating area" src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1200&auto=format&fit=crop">
+            <img id="reserveImg2" alt="Selected seating area">
+            <div class="cd-reserve-frame-scrim"></div>
+            <div class="cd-reserve-caption">
+              <h4 id="reserveCapTitle">Indoor Noir</h4>
+              <p id="reserveCapDesc">Candlelit and close to the pass, beneath a charcoal-plastered ceiling.</p>
+            </div>
+          </div>
+        </div>
+ 
+        <div class="cd-reserve-form">
+          <div class="cd-form-head reveal">
+            <p class="eyebrow">Book Your Table</p>
+            <h2>The Reservation</h2>
+            <p>Seatings run nightly, Tuesday through Sunday. We hold each table for fifteen minutes past your reserved time.</p>
+          </div>
+ 
+          <form id="resForm" novalidate>
+            <div class="cd-field-group reveal">
+              <label class="cd-field-label">Date</label>
+              <div class="cd-date-trigger" id="formDateTrigger">
+                <span class="cd-date-val date-label">Select a date</span>
+                <span class="cd-chev">▾</span>
+              </div>
+              <p class="cd-error" id="dateError">Please choose a date.</p>
+            </div>
+ 
+            <div class="cd-field-group reveal">
+              <label class="cd-field-label">Time</label>
+              <div class="cd-pills" id="timePills"></div>
+              <p class="cd-error" id="timeError">Please choose a time.</p>
+            </div>
+ 
+            <div class="cd-field-group reveal">
+              <label class="cd-field-label">Party Size</label>
+              <div class="cd-stepper-row">
+                <div class="cd-stepper">
+                  <button class="cd-step-btn" type="button" onclick="stepGuests(-1)" aria-label="Fewer guests">&#8722;</button>
+                  <span class="cd-guest-num guest-num" id="formGuestNum">2</span>
+                  <button class="cd-step-btn" type="button" onclick="stepGuests(1)" aria-label="More guests">&#43;</button>
+                </div>
+                <span class="cd-stepper-note" id="guestNote">Indoor Noir seats 2–6 guests</span>
+              </div>
+            </div>
+ 
+            <div class="cd-field-group reveal">
+              <label class="cd-field-label">Occasion</label>
+              <div class="cd-chips" id="occasionChips">
+                <button type="button" class="cd-chip" data-occ="None in particular">None in particular</button>
+                <button type="button" class="cd-chip" data-occ="Anniversary">Anniversary</button>
+                <button type="button" class="cd-chip" data-occ="Birthday">Birthday</button>
+                <button type="button" class="cd-chip" data-occ="Proposal">Proposal</button>
+                <button type="button" class="cd-chip" data-occ="Business Dinner">Business Dinner</button>
+              </div>
+            </div>
+ 
+            <div class="cd-field-group reveal">
+              <div class="cd-input-row">
+                <div class="cd-float">
+                  <input type="text" id="fullName" placeholder=" " autocomplete="name">
+                  <label for="fullName">Full Name</label>
+                  <p class="cd-error" id="nameError">Please enter your name.</p>
+                </div>
+                <div class="cd-float">
+                  <input type="tel" id="phone" placeholder=" " autocomplete="tel">
+                  <label for="phone">Phone Number</label>
+                  <p class="cd-error" id="phoneError">Enter a valid phone number.</p>
+                </div>
+              </div>
+            </div>
+ 
+            <button type="submit" class="cd-btn cd-btn-gold cd-btn-block reveal" data-magnetic id="submitBtn">
+              <span class="cd-btn-spinner"></span><span class="cd-btn-label">Confirm Reservation</span>
+            </button>
+            <p class="cd-submit-note reveal">A credit card is required to secure Rooftop Private and Chef's Counter bookings. No charge unless you no-show.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- REVIEWS -->
+  <section class="cd-reviews" id="reviews">
+    <div class="cd-reviews-head reveal">
+      <p class="eyebrow" style="justify-content:center;">Word Of Mouth</p>
+      <h2>Forty-two seats.<br>Every night, spoken for.</h2>
+    </div>
+ 
+    <div class="cd-marquee cd-reviews-row">
+      <div class="cd-marquee-track" id="marqueeTrack1"></div>
+    </div>
+    <div class="cd-marquee cd-reviews-row">
+      <div class="cd-marquee-track dir-r" id="marqueeTrack2"></div>
+    </div>
+  </section>
+ 
+</main>
+ 
+<footer class="cd-footer">
+  <div class="wrap">
+    <div class="cd-footer-grid">
+      <div class="cd-footer-brand reveal">
+        <h3>CINDRE</h3>
+        <p>119 Ashcroft Lane, Lower Marsh District. Open flame, closed Mondays.</p>
+        <div class="cd-footer-social">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="X">X</a>
+          <a href="#" aria-label="Journal">J</a>
+        </div>
+      </div>
+      <div class="cd-footer-col reveal">
+        <h5>Visit</h5>
+        <a href="#tables">The Room</a>
+        <a href="#reserve">Reservations</a>
+        <a href="#reviews">Reviews</a>
+      </div>
+      <div class="cd-footer-col reveal">
+        <h5>Hours</h5>
+        <p>Tue – Sun, 6:00 – 11:00 PM</p>
+        <p>Closed Mondays</p>
+        <p>Bar opens at 5:30 PM</p>
+      </div>
+      <div class="cd-footer-col reveal">
+        <h5>Contact</h5>
+        <a href="tel:+10000000000">+1 (000) 000&#8209;0000</a>
+        <a href="mailto:table@cindre.com">table@cindre.com</a>
+        <p>Private events on request</p>
+      </div>
+    </div>
+    <div class="cd-footer-bottom">
+      <span class="cd-star-badge">★ One Michelin Star, 2026 Guide</span>
+      <span>© 2026 CINDRE. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+ 
+<!-- CALENDAR POPOVER -->
+<div class="cd-calendar" id="calendarPop">
+  <div class="cd-cal-head">
+    <div class="cd-cal-nav"><button type="button" onclick="calShift(-1)" aria-label="Previous month">←</button></div>
+    <strong id="calMonthLabel">Month Year</strong>
+    <div class="cd-cal-nav"><button type="button" onclick="calShift(1)" aria-label="Next month">→</button></div>
+  </div>
+  <div class="cd-cal-dow"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+  <div class="cd-cal-grid" id="calGrid"></div>
+  <p class="cd-cal-note">CINDRE is closed Mondays. Bookings open 60 days in advance.</p>
+</div>
+ 
+<!-- CONFIRMATION MODAL -->
+<div class="cd-modal-backdrop" id="modalBackdrop">
+  <div class="cd-modal" role="dialog" aria-modal="true">
+    <button class="cd-modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    <div class="cd-check-wrap"><svg viewBox="0 0 24 24"><path d="M4 12.5L9.5 18L20 6"></path></svg></div>
+    <h3>Reservation Confirmed</h3>
+    <p class="cd-modal-code" id="modalCode">CONFIRMATION —</p>
+    <div class="cd-modal-details" id="modalDetails"></div>
+    <div class="cd-modal-qr"><img id="modalQr" alt="Reservation QR code"></div>
+    <div class="cd-modal-actions">
+      <button class="cd-btn cd-btn-ghost" onclick="downloadIcs()">Add to Calendar</button>
+      <button class="cd-btn cd-btn-gold" onclick="closeModal()">Done</button>
+    </div>
+  </div>
+</div>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="index.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</body>
+</html>
+ 
