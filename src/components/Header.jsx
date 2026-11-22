@@ -28,11 +28,7 @@ export default function Header() {
           <a href="/#contact">Contact</a>
         </nav>
         <div className="cd-header-right">
-          {isHome ? (
-            <Link to="/reservation" className="cd-btn cd-btn-gold" data-magnetic>
-              Reservation
-            </Link>
-          ) : (
+          {!isHome && (
             <Link to="/" className="cd-btn cd-btn-ghost" data-magnetic>
               &larr; Back to Home
             </Link>
@@ -53,11 +49,7 @@ export default function Header() {
         <a href="/#about" onClick={closeMenu}>About</a>
         <a href="/#location" onClick={closeMenu}>Location</a>
         <a href="/#contact" onClick={closeMenu}>Contact</a>
-        {isHome ? (
-          <Link to="/reservation" className="cd-mobile-res-btn" onClick={closeMenu}>
-            Reservation &rarr;
-          </Link>
-        ) : (
+        {!isHome && (
           <Link to="/" onClick={closeMenu}>
             &larr; Back to Home
           </Link>
