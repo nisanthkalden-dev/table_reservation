@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import CursorAndEmbers from './components/CursorAndEmbers.jsx';
 import Home from './pages/Home.jsx';
 import Reservation from './pages/Reservation.jsx';
+
+// Three.js is heavy — only load the 3D floor plan when it is requested.
+const Reserve3D = lazy(() => import('./pages/Reserve3D.jsx'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -57,7 +60,16 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/reservation" element={<Reservation />} />
+        <Route
+          path="/reservation"
+          element={(
+            <Suspense fallback={<div style={{ position: 'fixed', inset: 0, background: '#090807' }} />}>
+              <Reserve3D />
+            </Suspense>
+          )}
+        />
+        {/* Previous card/form based reservation flow, kept available. */}
+        <Route path="/reservation/classic" element={<Reservation />} />
       </Routes>
       <Footer />
     </BrowserRouter>
