@@ -78,7 +78,8 @@ export default function CursorAndEmbers() {
     window.addEventListener('resize', resize);
 
     const ambient = [];
-    const ambientCount = reduceMotion ? 0 : 22;
+    const isSmallScreen = window.matchMedia && window.matchMedia('(max-width: 600px)').matches;
+    const ambientCount = reduceMotion ? 0 : (isSmallScreen ? 10 : 22);
     for (let i = 0; i < ambientCount; i++) {
       ambient.push(makeAmbient());
     }

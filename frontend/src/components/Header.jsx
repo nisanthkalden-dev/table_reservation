@@ -15,6 +15,22 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Lock page scroll while the mobile menu is open.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.body.style.overflow = previous; };
+  }, [isMobileMenuOpen]);
+
+  // Close the mobile menu with Escape.
+  useEffect(() => {
+    if (!isMobileMenuOpen) return undefined;
+    const onKeyDown = (e) => { if (e.key === 'Escape') setIsMobileMenuOpen(false); };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [isMobileMenuOpen]);
+
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
@@ -22,10 +38,10 @@ export default function Header() {
       <div className="cd-header-inner">
         <Link to="/" className="cd-logo" onClick={closeMenu}>CINDRE</Link>
         <nav className="cd-nav">
-          <Link to="/#hero">Home</Link>
-          <a href="/#about">About</a>
-          <a href="/#location">Location</a>
-          <a href="/#contact">Contact</a>
+          <a href="/#hero" onClick={closeMenu}>Home</a>
+          <a href="/#about" onClick={closeMenu}>About</a>
+          <a href="/#location" onClick={closeMenu}>Location</a>
+          <a href="/#contact" onClick={closeMenu}>Contact</a>
         </nav>
         <div className="cd-header-right">
           {!isHome && (
@@ -36,7 +52,9 @@ export default function Header() {
           <button
             className={`cd-burger ${isMobileMenuOpen ? 'is-open' : ''}`}
             id="cdBurger"
-            aria-label="Open menu"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="cdMobileMenu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             <span></span><span></span><span></span>
@@ -45,7 +63,7 @@ export default function Header() {
       </div>
 
       <div className={`cd-mobile-menu ${isMobileMenuOpen ? 'is-open' : ''}`} id="cdMobileMenu">
-        <Link to="/#hero" onClick={closeMenu}>Home</Link>
+        <a href="/#hero" onClick={closeMenu}>Home</a>
         <a href="/#about" onClick={closeMenu}>About</a>
         <a href="/#location" onClick={closeMenu}>Location</a>
         <a href="/#contact" onClick={closeMenu}>Contact</a>
