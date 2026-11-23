@@ -599,7 +599,7 @@ section{position:relative;z-index:2;background:var(--charcoal);}
 .cd-section-head{text-align:center;margin-bottom:60px;}
 .cd-section-head h2{font-size:clamp(34px,4.5vw,52px);margin:16px 0 12px;color:var(--ivory);}
 .cd-section-head p{font-size:16px;color:var(--ivory-dim);max-width:540px;margin:0 auto;}
-.cd-location-grid{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:32px;align-items:stretch;}
+.cd-location-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:32px;align-items:stretch;}
 .cd-location-card{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);padding:40px 32px;display:flex;flex-direction:column;justify-content:space-between;}
 .cd-loc-icon{font-size:28px;margin-bottom:16px;}
 .cd-location-card h3{font-size:22px;color:var(--ivory);margin-bottom:16px;}
@@ -616,6 +616,8 @@ section{position:relative;z-index:2;background:var(--charcoal);}
 .cd-location-media{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:300px;}
 .cd-location-media img{width:100%;height:100%;object-fit:cover;}
 .cd-location-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px;background:linear-gradient(to top, rgba(10,10,10,.9), transparent);font-size:13px;letter-spacing:.08em;color:var(--ivory-dim);}
+.cd-location-map{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);min-height:360px;background:var(--charcoal);}
+.cd-location-map iframe{width:100%;height:100%;min-height:360px;display:block;}
 
 /* =========================================================
    Contact Section
@@ -729,7 +731,8 @@ section{position:relative;z-index:2;background:var(--charcoal);}
   .cd-location-card h3{font-size:20px;margin-bottom:12px;}
   .cd-loc-address{font-size:15px;}
   .cd-hours-list li{font-size:12.5px;padding-bottom:8px;}
-  .cd-location-media{min-height:220px;border-radius:16px;}
+  .cd-location-media, .cd-location-map{min-height:280px;border-radius:16px;}
+  .cd-location-map iframe{min-height:280px;}
 
   /* Reviews */
   .cd-reviews{padding:60px 0;}
