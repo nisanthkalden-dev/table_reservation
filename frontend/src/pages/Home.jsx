@@ -99,10 +99,10 @@ export default function Home() {
           <div className="cd-hero-gradient"></div>
         </div>
         <div className="cd-hero-content">
-          <p className="eyebrow">One Michelin Star — Live&#8209;Fire Tasting Menu</p>
+          <p className="eyebrow"></p>
           <h1 className="cd-hero-title">
             <span className="cd-line"><span className="cd-word">Reserve</span></span>
-            <span className="cd-line"><span class="cd-word">Your</span></span>
+            <span className="cd-line"><span className="cd-word">Your</span></span>
             <span className="cd-line"><span className="cd-word cd-italic">Moment</span></span>
           </h1>
           <p className="cd-hero-sub">Eleven courses, one open flame. CINDRE seats forty-two guests a night — never more.</p>
