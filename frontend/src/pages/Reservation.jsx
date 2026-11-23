@@ -125,6 +125,36 @@ export default function Reservation() {
     }
   }, []);
 
+  useEffect(() => {
+    // Lock page scroll while the confirmation modal is open.
+    if (!modalOpen) return undefined;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKeyDown = (e) => { if (e.key === 'Escape') setModalOpen(false); };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.body.style.overflow = previous;
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [modalOpen]);
+
+  useEffect(() => {
+    // Dismiss the calendar on outside tap or Escape (mobile-friendly).
+    if (!isCalOpen) return undefined;
+    const onPointerDown = (e) => {
+      if (!e.target.closest('.cd-calendar') && !e.target.closest('.cd-date-trigger')) {
+        setIsCalOpen(false);
+      }
+    };
+    const onKeyDown = (e) => { if (e.key === 'Escape') setIsCalOpen(false); };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKeyDown);
+    };
+  }, [isCalOpen]);
+
   const handleTableSelect = (key) => {
     setSelectedTable(key);
     const t = TABLES[key];
@@ -362,6 +392,16 @@ export default function Reservation() {
                   <div
                     className={`cd-date-trigger ${dateError ? 'has-error' : ''}`}
                     onClick={openCalendar}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openCalendar(e);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-haspopup="dialog"
+                    aria-expanded={isCalOpen}
                   >
                     <span className="cd-date-val date-label">{formatDateLabel(date)}</span>
                     <span className="cd-chev">▾</span>
@@ -553,7 +593,11 @@ export default function Reservation() {
       </div>
 
       {/* CONFIRMATION MODAL */}
-      <div className={`cd-modal-backdrop ${modalOpen ? 'is-open' : ''}`} id="modalBackdrop">
+      <div
+        className={`cd-modal-backdrop ${modalOpen ? 'is-open' : ''}`}
+        id="modalBackdrop"
+        onClick={(e) => { if (e.target === e.currentTarget) setModalOpen(false); }}
+      >
         <div className="cd-modal" role="dialog" aria-modal="true">
           <button className="cd-modal-close" onClick={() => setModalOpen(false)} aria-label="Close">✕</button>
           <div className="cd-check-wrap">

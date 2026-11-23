@@ -99,10 +99,10 @@ export default function Home() {
           <div className="cd-hero-gradient"></div>
         </div>
         <div className="cd-hero-content">
-          <p className="eyebrow">One Michelin Star — Live&#8209;Fire Tasting Menu</p>
+          <p className="eyebrow"></p>
           <h1 className="cd-hero-title">
             <span className="cd-line"><span className="cd-word">Reserve</span></span>
-            <span className="cd-line"><span class="cd-word">Your</span></span>
+            <span className="cd-line"><span className="cd-word">Your</span></span>
             <span className="cd-line"><span className="cd-word cd-italic">Moment</span></span>
           </h1>
           <p className="cd-hero-sub">Eleven courses, one open flame. CINDRE seats forty-two guests a night — never more.</p>
@@ -175,14 +175,6 @@ export default function Home() {
 
           <div className="cd-location-grid">
             <div className="cd-location-card reveal">
-              <div className="cd-loc-icon">📍</div>
-              <h3>Address & Arrival</h3>
-              <p className="cd-loc-address"><strong>119 Ashcroft Lane</strong><br />Lower Marsh District<br />London SE1 7SG</p>
-              <p className="cd-loc-detail">Valet parking is available starting at 5:00 PM outside the main entrance. 4-minute walk from Waterloo / Lower Marsh Tube.</p>
-              <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="cd-text-link">Get Directions &nearr;</a>
-            </div>
-
-            <div className="cd-location-card reveal">
               <div className="cd-loc-icon">⏱</div>
               <h3>Dinner Hours</h3>
               <ul className="cd-hours-list">
@@ -192,13 +184,20 @@ export default function Home() {
                 <li><span>Monday</span><em>Closed (Private events)</em></li>
               </ul>
               <p className="cd-loc-detail">The Hearth Bar opens nightly 30 minutes before dining service.</p>
+              <a href="https://maps.google.com/?q=Lower+Marsh+London+SE1+7SG" target="_blank" rel="noopener noreferrer" className="cd-text-link">Get Directions &nearr;</a>
             </div>
 
-            <div className="cd-location-media reveal">
-              <img alt="CINDRE restaurant courtyard exterior" src="/assets/images/location.jpg" />
-              <div className="cd-location-overlay">
-                <span>Discrete Entrance — Ring buzzer 01</span>
-              </div>
+            <div className="cd-location-map reveal">
+              <iframe
+                title="Restaurant Location Map"
+                src="https://maps.google.com/maps?q=Lower%20Marsh%20London%20SE1%207SG&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>

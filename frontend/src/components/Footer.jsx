@@ -58,30 +58,11 @@ export default function Footer() {
             <a href="/#contact">Contact</a>
             <Link to="/reservation">Reservations</Link>
           </div>
-
-          <div className="cd-footer-col reveal">
-            <h5>Hours</h5>
-            <div className="cd-footer-hours"><span>Tue &ndash; Thu</span><span>6:00 &ndash; 10:30 PM</span></div>
-            <div className="cd-footer-hours"><span>Fri &ndash; Sat</span><span>5:30 &ndash; 11:00 PM</span></div>
-            <div className="cd-footer-hours"><span>Sunday</span><span>6:00 &ndash; 10:00 PM</span></div>
-            <div className="cd-footer-hours"><span>Monday</span><span>Closed</span></div>
-            <p className="cd-footer-note">The Hearth Bar opens 30 minutes before service.</p>
-          </div>
-
-          <div className="cd-footer-col reveal">
-            <h5>Find Us</h5>
-            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="cd-footer-ext">
-              119 Ashcroft Lane<br />London SE1 7SG
-            </a>
-            <p className="cd-footer-note">Lower Marsh District. Ring buzzer 01 at the discrete entrance.</p>
-            <a href="tel:+10000000000">+1 (000) 000&#8209;0000</a>
-            <a href="mailto:table@cindre.com">table@cindre.com</a>
-          </div>
         </div>
 
         <div className="cd-footer-bottom">
           <div className="cd-footer-bottom-left">
-            <span className="cd-star-badge">★ One Michelin Star, 2026 Guide</span>
+            {/* <span className="cd-star-badge">★ One Michelin Star, 2026 Guide</span> */}
             <span>&copy; 2026 CINDRE. All rights reserved.</span>
           </div>
           <button type="button" className="cd-to-top" onClick={scrollToTop}>
